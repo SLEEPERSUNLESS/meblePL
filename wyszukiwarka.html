@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="meble.pl" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="Kacper Ceszke" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <title>Wyszukiwarka mebli</title>
+    <link rel="stylesheet" href="styles/searchstyles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrapper">
+        <div class="logo"><a href="main.html">meble.pl</a></div>
+        <input type="radio" name="slider" id="menu-btn" />
+        <input type="radio" name="slider" id="close-btn" />
+        <ul class="nav-links">
+          <label for="close-btn" class="btn close-btn"
+            ><i class="fas fa-times"></i
+          ></label>
+          <li><a href="wyszukiwarka.html">WYSZUKIWARKA MEBLI</a></li>
+          <li><a href="register.html">REJESTRACJA</a></li>
+          <li><a href="contact.html">SKONTAKTUJ SIĘ</a></li>
+        </ul>
+        <label for="menu-btn" class="btn menu-btn"
+          ><i class="fas fa-bars"></i
+        ></label>
+      </div>
+    </nav>
+    <div class="main">
+      <h1 style="color: black;">Nasza oferta</h1>
+
+      <div class="btform">
+        <form id="searchForm" method="GET">
+          <input
+            style="color: #000000"
+            type="text"
+            id="searchInput"
+            placeholder="komoda, szafa, biurko..."
+          />
+          <div class="buttons">
+            <button type="submit" class="bt">Szukaj</button>
+          </div>
+        </form>
+      </div>
+      <div id="furnitureList" class="furniture-container"></div>
+    </div>
+    <script>
+      document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const searchInput = document.getElementById("searchInput").value;
+
+          fetch(`proxy.php?search=${searchInput}`)
+            .then((response) => response.json())
+            .then((data) => {
+              showFurniture(data);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+
+      function showFurniture(furniture) {
+        const furnitureList = document.getElementById("furnitureList");
+        furnitureList.innerHTML = "";
+        const cssStyles = `
+    .furniture-box {
+      background-color: black;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      width: 220px;
+    }
+
+    .furniture-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 10px auto;
+    }
+  `;
+        const styleElement = document.createElement("style");
+        styleElement.textContent = cssStyles;
+        document.head.appendChild(styleElement);
+
+        furniture.forEach((furniture, index) => {
+          const artDiv = document.createElement("div");
+          artDiv.classList.add("furniture-box");
+          artDiv.innerHTML = `
+      <p><strong>ID:</strong> ${furniture.Id}</p>
+      <p><strong>Rodzaj:</strong> ${furniture.rodzaj}</p>
+      <p><strong>Kolor:</strong> ${furniture.kolor}</p>
+      <p><strong>Cena:</strong> ${furniture.cena}</p>
+    `;
+          furnitureList.appendChild(artDiv);
+        });
+      }
+    </script>
+  </body>
+</html>

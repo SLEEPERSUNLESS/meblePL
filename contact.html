@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="meble.pl" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="Kacper Ceszke" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <title>SKONTAKTUJ SIĘ</title>
+    <link rel="stylesheet" href="styles/contactstyles.css" />
+  </head>
+
+  <body>
+    <nav>
+      <div class="wrapper">
+        <div class="logo"><a href="main.html">meble.pl</a></div>
+        <input type="radio" name="slider" id="menu-btn" />
+        <input type="radio" name="slider" id="close-btn" />
+        <ul class="nav-links">
+          <label for="close-btn" class="btn close-btn"
+            ><i class="fas fa-times"></i
+          ></label>
+          <li><a href="wyszukiwarka.html">WYSZUKIWARKA MEBLI</a></li>
+          <li><a href="register.html">REJESTRACJA</a></li> 
+          <li><a href="contact.html">SKONTAKTUJ SIĘ</a></li>
+        </ul>
+        <label for="menu-btn" class="btn menu-btn"
+          ><i class="fas fa-bars"></i
+        ></label>
+      </div>
+    </nav>
+    <div class="razem">
+      <p
+        style="color: black; font-size: larger; font-weight: bolder; margin: 1%"
+      >
+        FORMULARZ KONTAKTOWY
+      </p>
+      <div class="formularz">
+        <form method="POST" name="contact_form" class="form" action="form.php">
+          <label for="fname">Imie</label>
+          <input
+            type="text"
+            id="fname"
+            name="firstname"
+            placeholder="Wpisz imie"
+          />
+          <label for="lname">Nazwisko</label>
+          <input
+            type="text"
+            id="lname"
+            name="lastname"
+            placeholder="Wpisz nazwisko"
+          />
+          <label for="tel">Numer Telefonu</label>
+          <input
+            type="text"
+            id="tel"
+            name="tel"
+            placeholder="Wpisz nr telefonu"
+          />
+          <label for="tel">Adres Email</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Wpisz adres email"
+          />
+          <label for="mes">Wiadomość</label>
+          <input
+            type="text"
+            id="mes"
+            name="mes"
+            placeholder="napisz wiadomość"
+          />
+          <input type="submit" value="Wyślij" />
+        </form>
+      </div>
+    </div>
+    <footer class="footer">
+      <p>&copy;2024 Kacper Ceszke | All Rights Reserved</p>
+    </footer>
+  </body>
+</html>

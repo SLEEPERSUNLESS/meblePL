@@ -1,3 +1,3 @@
 "# meblePL" 
-ignore the styling
 Personal project
+ignore the styling
